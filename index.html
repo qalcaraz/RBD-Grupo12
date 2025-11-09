@@ -232,10 +232,135 @@
             color: #93c5fd; /* blue-300 */
         }
 
+        /* Estilos para el carrusel de imágenes */
+        .image-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #f8f9fa;
+            max-width: 100%;
+        }
+        
+        .dark .image-carousel {
+            background: #374151;
+        }
+        
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .carousel-controls:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        .carousel-prev {
+            left: 10px;
+        }
+        
+        .carousel-next {
+            right: 10px;
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .carousel-dot.active {
+            background: #3b82f6;
+        }
+        
+        .dark .carousel-dot {
+            background: #6b7280;
+        }
+        
+        .dark .carousel-dot.active {
+            background: #60a5fa;
+        }
+
         /* Estilos para las listas desordenadas */
         .list-disc li {
-            margin-left: 1.25rem; /* Espaciado a la izquierda */
-            margin-bottom: 0.5rem; /* Espaciado entre elementos */
+            list-style-type: disc;
+            margin-left: 1rem;
+        }
+        .list-disc {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        .list-inside {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+        
+        /* Responsive para carruseles */
+        @media (max-width: 768px) {
+            .carousel-controls {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .carousel-prev {
+                left: 5px;
+            }
+            
+            .carousel-next {
+                right: 5px;
+            }
+            
+            .carousel-slide img {
+                max-height: 300px;
+            }
+        }
+
+        /* Estilos para las listas desordenadas */
+        .list-disc li {
+            margin-left: 1.25rem;
+            margin-bottom: 0.5rem;
         }
         .list-disc {
             margin-top: 0.5rem;
@@ -244,6 +369,27 @@
         .list-inside {
             list-style-position: inside;
             padding-left: 0;
+        }
+
+        /* Estilos para blockquotes */
+        blockquote {
+            text-align: justify;
+            font-style: italic;
+            font-size: 0.875rem;
+            border-left: 3px solid #3b82f6;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 6px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        .dark blockquote {
+            color: #d1d5db;
+            background-color: #404958;
+            border-left-color: #879db8;
         }
     </style>
 </head>
@@ -277,10 +423,20 @@
                 </div>
                 <!-- Menú de Navegación -->
                 <nav class="hidden md:flex space-x-6 items-center">
-                    <a href="#s1" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">Sección #1 AWS</a>
-                    <a href="#s2" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">Sección #2 EC2 Básico</a>
-                    <a href="#s3" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">Sección #3 AutoScaling/ELB</a>
-                    <a href="#s4" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">Sección #4 AWS Educate</a>
+                    <a href="#s1" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">1. AWS</a>
+                    <a href="#s2" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">2. EC2 Básico</a>
+                    <a href="#s3" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">3. AutoScaling/ELB</a>
+                    <a href="#s4" class="nav-link text-gray-300 hover:text-blue-300 transition duration-150 font-medium">4. AWS Educate</a>
+                    <!-- Separador -->
+                    <div class="border-l border-gray-500 h-6 mx-2"></div>
+                    <!-- Enlace a Notion -->
+                    <a href="#" id="notionLink" class="flex items-center space-x-2 text-gray-300 hover:text-purple-300 transition duration-150 font-medium bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg" target="_blank" rel="noopener noreferrer" title="Tareas y Reuniones en Notion">
+                        <!-- Icono oficial de Notion -->
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933l3.242-.186z"/>
+                        </svg>
+                        <span>Notion</span>
+                    </a>
                     <!-- Botón Dark/Light Mode -->
                     <button id="themeToggle" class="p-2 rounded-full text-gray-300 hover:bg-gray-700 hover:text-yellow-400 transition">
                         <!-- Icono sol/luna-->
@@ -299,10 +455,19 @@
             <!-- Menú móvil desplegable -->
             <div id="mobileMenu" class="md:hidden header-bg border-t border-gray-600 hidden">
                 <nav class="container mx-auto px-4 py-3 space-y-2">
-                    <a href="#s1" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">Sección #1 AWS</a>
-                    <a href="#s2" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">Sección #2 EC2 Básico</a>
-                    <a href="#s3" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">Sección #3 AutoScaling/ELB</a>
-                    <a href="#s4" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">Sección #4 AWS Educate</a>
+                    <a href="#s1" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">1. AWS</a>
+                    <a href="#s2" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">2. EC2 Básico</a>
+                    <a href="#s3" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">3. AutoScaling/ELB</a>
+                    <a href="#s4" class="nav-link block text-gray-300 hover:text-blue-300 transition duration-150 font-medium py-2">4. AWS Educate</a>
+                    <!-- Separador -->
+                    <div class="border-t border-gray-600 my-2"></div>
+                    <!-- Enlace a Notion en móvil -->
+                    <a href="#" id="notionLinkMobile" class="flex items-center space-x-2 text-gray-300 hover:text-purple-300 transition duration-150 font-medium py-2" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933l3.242-.186z"/>
+                        </svg>
+                        <span>Tareas y Reuniones (Notion)</span>
+                    </a>
                     <!-- Botón Dark/Light Mode en móvil -->
                     <button id="themeToggleMobile" class="flex items-center space-x-2 text-gray-300 hover:text-yellow-400 transition py-2">
                         <svg id="moonIconMobile" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
@@ -347,7 +512,7 @@
         <!-- 2. SECCIÓN #1 AWS (Tabla + Diagrama/Preguntas) -->
         <section id="s1" class="mb-12">
             <h2 class="text-3xl font-bold border-b-2 pb-2 mb-6 text-blue-700 dark:text-blue-400">
-                Sección #1 AWS
+                Sección 1: AWS
             </h2>
 
             <!-- TABLA DE SERVICIOS -->
@@ -373,6 +538,12 @@
                         <tr class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 border-b border-gray-300 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold text-blue-800 dark:text-blue-300">EC2</td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-200">
+                                <a href="https://aws.amazon.com/es/ec2/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon EC2 (Elastic Compute Cloud)
+                                </a><br/><br/>
                                 Servicio básico de la nube AWS. En EC2 se crean las máquinas virtuales en la nube. Permite su creación de forma rápida. Además, si la máquina virtual se queda corta, se puede reescalar añadiendo más potencia fácilmente.
                             </td>
                         </tr>
@@ -381,7 +552,14 @@
                         <tr class="hover:bg-green-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">RDS <span class="task-assign elisa">(Asignado a Elisa)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/rds/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon RDS (Relational Database Service)
+                                </a><br/><br/>
                                 Servicio de BBDD relacionales.<br/>
+                                Soporta varios motores de bases de datos como MySQL, PostgreSQL, Oracle, SQL Server y Amazon Aurora.<br/>
                                 <br/>
                                 Amazon te “alquila” bases de datos y se encarga de las actualizaciones del software, copia de seguridad y escalado.<br/>
                                 <br/>
@@ -391,7 +569,14 @@
                         <tr class="hover:bg-green-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">S3 <span class="task-assign elisa">(Asignado a Elisa)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/s3/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon S3 (Simple Storage Service)
+                                </a><br/><br/>
                                 Lugar donde puedo subir PDF, fotos, videos, etc y lo puedo vincular a mi pagina web. (= dropbox o google drive).<br/>
+                                En definitiva, servicio de almacenamiento de objetos. Muy barato (en comparación con EBS) y escalable.
                                 <br/> 
                                 Es como un almacén gigante con espacio ilimitado. AWS cuida la seguridad.
                             </td>
@@ -399,18 +584,42 @@
                         <tr class="hover:bg-green-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">EBS <span class="task-assign elisa">(Asignado a Elisa)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/ebs/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon EBS (Elastic Block Store)
+                                </a><br/><br/>
                                 Elastic Block Store. Es el disco duro de tu PC (EC2), pero en internet.
+                                <br/>
+                                Permite crear discos duros virtuales de diferentes tamaños y tipos (SSD, HDD) según las necesidades de rendimiento y almacenamiento y se pueden conectar a las instancias EC2.
                             </td>
                         </tr>
                         <tr class="hover:bg-green-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">DynamoDB <span class="task-assign elisa">(Asignado a Elisa)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/dynamodb/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon DynamoDB (Base de Datos NoSQL)
+                                </a><br/><br/>
                                 Base de Datos NoSQL super rápida y que escala automáticamente.
+                                <br/>
+                                Ideal para aplicaciones que requieren baja latencia y alta disponibilidad.
+                                <br/>
+                                Totalmente gestionada por AWS, lo que significa que no tienes que preocuparte por la administración del servidor o la configuración.
                             </td>
                         </tr>
                         <tr class="hover:bg-green-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">Cloudfront <span class="task-assign elisa">(Asignado a Elisa)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/cloudfront/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon CloudFront (CDN: Global Content Delivery Network)
+                                </a><br/><br/>
                                 Lleva el contenido más cerca de los usuarios.
                             </td>
                         </tr>
@@ -419,6 +628,12 @@
                         <tr class="hover:bg-orange-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">Amazon EKS <span class="task-assign tomas">(Asignado a Tomás)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/eks/eks-anywhere/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon EKS Anywhere (Elastic Kubernetes Service)
+                                </a><br/><br/>
                                 Es un servicio de Kubernetes administrado que hace que sea mucho más fácil ejecutar, escalar y gestionar contenedores en AWS, sin la necesidad de configurar manualmente el clúster.<br/>
                                 <br/>
                                 EKS se encarga de automatizar la creación de nodos, la actualización del clúster y la integración con servicios como IAM y CloudWatch.<br/>
@@ -429,6 +644,12 @@
                         <tr class="hover:bg-orange-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">AWS Lambda <span class="task-assign tomas">(Asignado a Tomás)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/lambda/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon Lambda (Run Code Without Thinking About Servers)
+                                </a><br/><br/>
                                 Imagina un servicio de computación sin servidor que ejecuta tu código automáticamente en respuesta a eventos, ¡sin que tengas que preocuparte por administrar servidores! Solo pagas por el tiempo que tu código está en ejecución y la memoria que utiliza.<br/>
                                 <br/>
                                 Es perfecto para automatizar tareas, crear microservicios o procesar datos en tiempo real. Puedes activarlo desde otros servicios como S3, API Gateway, DynamoDB, y más, o incluso hacer llamadas directas. Además, ofrece una escalabilidad impresionante, requiere poco mantenimiento y tiene una arquitectura súper flexible.
@@ -438,7 +659,13 @@
                         <tr class="hover:bg-orange-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">VPC <span class="task-assign tomas">(Servicio Añadido - Tomás)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
-                                AWS Amazon VPC (Virtual Private Cloud), este servicio te permite crear una red privada virtual dentro de AWS, que es segura y está aislada para proteger tus recursos en la nube.<br/>
+                                <a href="https://aws.amazon.com/es/vpc/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon VPC (Virtual Private Cloud)
+                                </a><br/><br/>
+                                AWS VPC, este servicio te permite crear una red privada virtual dentro de AWS, que es segura y está aislada para proteger tus recursos en la nube.<br/>
                                 <br/>
                                 Tú tienes el control total sobre las subredes, los rangos de IP, las tablas de enrutamiento y las reglas de seguridad. Además, puedes conectar servicios públicos, como ALB, con servicios privados, como RDS o ECS.<br/> 
                                 <br/>
@@ -448,6 +675,12 @@
                         <tr class="hover:bg-orange-50/50 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-500">
                             <td class="px-6 py-4 font-semibold">Route 53 <span class="task-assign tomas">(Servicio Añadido - Tomás)</span></td>
                             <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                                <a href="https://aws.amazon.com/es/route53/?nc2=type_a" class="external-link" target="_blank" rel="noopener noreferrer">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
+                                    </svg>
+                                    Amazon Route 53 (DNS Web Service)
+                                </a><br/><br/>
                                 Servicio de DNS gestionado que convierte nombres de dominio como <u>lasalle.es</u> en direcciones IP.<br/>
                                 <br/>
                                 Se utiliza para dirigir el tráfico de los usuarios hacia aplicaciones, balanceadores o servicios en AWS. Permite establecer políticas de enrutamiento geográfico, de latencia o de failover.<br/>
@@ -464,17 +697,17 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
                                     </svg>
-                                    Amazon CloudWatch
+                                    Amazon CloudWatch (Monitoring and Observability Service)
                                 </a><br/>
                                 <br/>
-                                Servicio de monitoreo y observabilidad que proporciona en tiempo realdatos de rendimiento llamados métricas 
+                                Servicio de monitoreo y observabilidad que proporciona en tiempo real datos de rendimiento llamados métricas
                                 sobre los recursos y aplicaciones en AWS.<br/>
                                 <br/> 
                                 Estas métricas se pueden ver en paneles personalizables, y se pueden configurar alarmas que se activan cuando ciertas métricas 
                                 (como el uso de CPU, RAM) superan un umbral que se establezca o cuando hay errores.<br/>
                                 <br/>
                                 Es decir <strong>vigila</strong> los difrentes flags que se le indiquen generando alertas que se hayan configurado 
-                                con la finalidad de detectar problemas y/o optimizar recursos (y con ello costes asociados).<br/> 
+                                con la finalidad de detectar problemas y optimizar recursos (y con ello costes asociados).<br/> 
                                 <br/>
                                 Características clave:<br/>
                                 <ul class="list-disc list-inside">
@@ -498,16 +731,16 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
                                     </svg>
-                                    AWS IAM
+                                    AWS IAM (Identity and Access Management)
                                 </a><br/>
                                 <a href="https://aws.amazon.com/es/iam/features/mfa/" class="external-link" target="_blank" rel="noopener noreferrer">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
                                     </svg>
-                                    AWS IAM features: MFA
+                                    Amazon IAM features: MFA
                                 </a><br/>
                                 <br/>
-                                IAM <strong>Identity and Access Management</strong> es un servicio que gestiona el acceso a los recursos de AWS.<br/>
+                                AWS IAM es un servicio que gestiona el acceso a los recursos de AWS.<br/>
                                 <br/>
                                 Permite crear usuarios, grupos, roles y políticas para definir quién puede hacer qué, por lo que es un sistema de control de acceso, y permite un control de acceso granular ya que se integra en casi todos los servicios de AWS.<br/>
                                 <br/>
@@ -532,10 +765,10 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
                                     </svg>
-                                    AWS SNS
+                                    Amazon SNS (Simple Notification Service)
                                 </a><br/>
                                 <br/>
-                                SNS <strong>Amazon Simple Notification Service</strong> es un servicio de publicación y suscripción 
+                                AWS SNS es un servicio de publicación y suscripción.
                                 completamente administrado para mensajería A2A y A2P. 
                                 Permite desacoplar los sistemas de envío y recepción de información.<br/>
                                 <br/>
@@ -571,7 +804,7 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0 9c0 0-5-5-5-5m5 5s-5-5-5-5m5 5c0 0 5-5 5-5m-5 5s5-5 5-5"></path>
                                     </svg>
-                                    AWS Security Hub
+                                    AWS Security Hub (Centro de Gestión de Seguridad)
                                 </a><br/>
                                 <br/>                                
                                 Es un servicio que actúa como un centro de gestión de información y eventos de seguridad (SIEM).<br/>
@@ -628,16 +861,16 @@
                         <strong class="text-blue-600 dark:text-blue-400">¿Por qué no se usa EC2 y se usa ECS? ¿Diferencias?</strong>
                         <p class="ml-2"><!--<span class="pendiente">[PENDIENTE]</span>-->
                             <br/>
-                            Es un servicio de diseñado para <strong>orquestar</strong> contenedores (normalmente Docker) y los ejecuta y administra de forma automática y escalable.<br/>
-                            Algunas de sus características son:<br/>
-                            <ul class="list-disc list-inside">
-                                <li><strong>Lanzarlos</strong> en servidores (EC2) o directamente en modo <em>Fargate</em> (sin servidores).</li>
-                                <li><strong>Controlar</strong> (si uno falla, lo reinicia).</li>
-                                <li><strong>Distribuir</strong> entre varias zonas de disponibilidad.</li>
-                                <li><strong>Escalar</strong> según el tráfico.</li>
-                                <li><strong>Conectar</strong> con otros servicios como RDS (base de datos), ALB (balanceador) o CloudWatch (monitorización).</li>
-                            </ul><br/>
-                            ECS, evita tener que administrar máquinas virtuales o preocuparte por cuántas instancias necesitas.
+                            Porque ECS es un servicio de diseñado para <strong>orquestar</strong> contenedores (normalmente Docker) y los ejecuta y administra de forma automática y escalable, lo que simplifica la implementación y gestión de aplicaciones en contenedores,
+                            te evita tener que administrar máquinas virtuales o preocuparte por cuántas instancias necesitas.<br/>
+                            <br/>
+                            Mientras que con EC2, tienes que gestionar todo el sistema operativo, las actualizaciones, la seguridad y la escalabilidad manualmente, 
+                            y sería el equivalente a alquilar un servidor físico (IaaS), y ECS sería como contratar un servicio de hosting gestionado para tus aplicaciones en contenedores.<br/>
+                            <br/>
+                            ECS es ideal para aplicaciones modernas basadas en microservicios y contenedores, 
+                            mientras que EC2 es más adecuado para aplicaciones tradicionales que requieren un control total sobre el entorno del servidor.<br/>
+                            <br/>
+                            ECS utiliza instancias EC2 (o AWS Fargate) como infraestructura subyacente para ejecutar los contenedores.
                         </p>
                     </li>
                     <li>
@@ -675,11 +908,10 @@
             </div>
         </section>
 
-
         <!-- SECCIÓN #2 PRIMER SERVIDOR WEB EN AWS (EC2 Básico) -->
         <section id="s2" class="mb-12">
             <h2 class="text-3xl font-bold border-b-2 pb-2 mb-6 text-blue-700 dark:text-blue-400">
-                Sección #2: Primer Servidor Web en AWS
+                Sección 2: Primer Servidor Web en AWS
             </h2>
             <div class="content-card space-y-8">
                 <h3 class="text-xl font-semibold text-gray-700 border-b pb-2 dark:text-gray-200">Despliegue de Servidor Web Básico (Lab 3)</h3>
@@ -690,55 +922,262 @@
 
                 <!-- LISTA DE PASOS/CAPTURA -->
                 <div class="space-y-6 dark:text-gray-300">
-                    <!-- Captura 1 -->
+
+                    <!-- Capturas 1 -->
                     <div class="border p-4 rounded-lg bg-yellow-50 border-yellow-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-yellow-800 mb-2 dark:text-yellow-400">[CS01] Captura de EC2 con Protección</h4>
+                        <h4 class="text-lg font-bold text-yellow-800 mb-2 dark:text-yellow-400">[CS01] Capturas de EC2 con Protección</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span>
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Como marca el laboratorio, poner la protección contra terminación en la instancia EC2 creada para evitar borrados accidentales (vistas 1-2).<br/>
+                            - En los detalles de la instancia EC2, se puede observar que la protección contra terminación está activada (vistas 3).<br/>
+                            - Sí se termina la instancia EC2 desde la consola, aparece un mensaje de advertencia indicando que la instancia tiene protección contra terminación activada (vista 4).
                         </p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS01+Captura+de+EC2+con+Protección]" alt="Captura de EC2 con protección contra terminación" class="mx-auto rounded shadow max-w-full h-auto">
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS02+Captura+de+la+página+web+en+el+navegador]" alt="Captura de la página web en el navegador" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e2-cs01">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS01_termination-protection_K1.png" alt="Capturas de EC2 con protección contra terminación - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS01_termination-protection_E1.png" alt="Capturas de EC2 con protección contra terminación - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS01_termination-protection_T1.png" alt="Capturas de EC2 con protección contra terminación - Vista 3" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS01_termination-protection_K2.png" alt="Capturas de EC2 con protección contra terminación - Vista 4" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e2-cs01', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e2-cs01', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e2-cs01', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs01', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs01', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs01', 3)"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Captura 2 -->
+                    <!-- Capturas 2 -->
                     <div class="border p-4 rounded-lg bg-green-50 border-green-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-green-800 mb-2 dark:text-green-400">[CS02] Captura de la página web en el navegador</h4>
+                        <h4 class="text-lg font-bold text-green-800 mb-2 dark:text-green-400">[CS02] Capturas de la página web en el navegador</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS02+Captura+de+la+página+web+en+el+navegador]" alt="Captura de la página web en el navegador" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Capturas de la página web "Hello World" desplegada de distintas instancias EC2 levantadas por este grupo.
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS02+Captura+de+la+página+web+en+el+navegador]" alt="Captura de la página web en el navegador" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e2-cs02">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS02_hello-world_E1.png" alt="Capturas de la página web en el navegador - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS02_hello-world_T1.png" alt="Capturas de la página web en el navegador - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS02_hello-world_K1.png" alt="Capturas de la página web en el navegador - Vista 3" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e2-cs02', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e2-cs02', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e2-cs02', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs02', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs02', 2)"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Captura 3 -->
+                    <!-- Capturas 3 -->
                     <div class="border p-4 rounded-lg bg-indigo-50 border-indigo-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-indigo-800 mb-2 dark:text-indigo-400">[CS03] Captura del monitoreo de la instancia</h4>
+                        <h4 class="text-lg font-bold text-indigo-800 mb-2 dark:text-indigo-400">[CS03] Capturas del monitoreo de la instancia</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS03+Captura+del+monitoreo+de+la+instancia]" alt="Captura del monitoreo de la instancia" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Capturas de pantalla de la instancia de los distintos EC2 creados dentro del diagnóstico de instancias (vistas 1-3).<br/>
+                            - Captura de los registros del sistema del diagnóstico de instancias de uno de los EC2 (vista 4).
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS03+Captura+del+monitoreo+de+la+instancia]" alt="Captura del monitoreo de la instancia" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e2-cs03">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS03_monitoreo-EC2_E1.jpg" alt="Capturas del monitoreo de la instancia - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS03_monitoreo-EC2_T1.png" alt="Capturas del monitoreo de la instancia - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS03_monitoreo-EC2_K2.png" alt="Capturas del monitoreo de la instancia - Vista 3" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS03_monitoreo-EC2_K1.png" alt="Capturas del monitoreo de la instancia - Vista 4" class="rounded shadow">
+                                </div>                                
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e2-cs03', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e2-cs03', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e2-cs03', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs03', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs03', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs03', 3)"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Captura 4 -->
+                    <!-- Capturas 4 -->
                     <div class="border p-4 rounded-lg bg-pink-50 border-pink-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-pink-800 mb-2 dark:text-pink-400">[CS04] Captura del grupo de seguridad HTTP</h4>
+                        <h4 class="text-lg font-bold text-pink-800 mb-2 dark:text-pink-400">[CS04] Capturas del grupo de seguridad HTTP</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS04+Captura+del+grupo+de+seguridad+HTTP]" alt="Captura del grupo de seguridad" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Capturas de pantalla del grupo de seguridad creado para permitir el tráfico HTTP (puerto 80) hacia la instancia EC2 desde cualquier origen (vistas 1-2).<br/>
+                            - Capturas donde se puede observar la regla de entrada de la instancia que permite el tráfico HTTP (puerto 80) desde cualquier dirección IP (vistas 3-4). 
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS04+Captura+del+grupo+de+seguridad+HTTP]" alt="Captura del grupo de seguridad" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e2-cs04">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS04_ok-security-rule_K1.png" alt="Capturas del grupo de seguridad - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS04_ok-security-rule_K2.png" alt="Capturas del grupo de seguridad - Vista 2" class="rounded shadow">
+                                </div>                                
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS04_ok-security-rule_E1.png" alt="Capturas del grupo de seguridad - Vista 3" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS04_ok-security-rule_T1.png" alt="Capturas del grupo de seguridad - Vista 4" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e2-cs04', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e2-cs04', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e2-cs04', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs04', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs04', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs04', 3)"></div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- Captura 5 -->
+                    <!-- Capturas 5 -->
                     <div class="border p-4 rounded-lg bg-red-50 border-red-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-red-800 mb-2 dark:text-red-400">[CS05] Captura del reescalado de la instancia</h4>
+                        <h4 class="text-lg font-bold text-red-800 mb-2 dark:text-red-400">[CS05] Capturas del reescalado de la instancia</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS05+Captura+del+reescalado+de+la+instancia]" alt="Captura del reescalado de la instancia" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Partiendo de una instancia EC2 t2.micro y 8 GB de almacenamiento EBS (vista 1).<br/>
+                            - Se tiene que hacer el reescalado de la instancia a t2.small y 10 GB de almacenamiento EBS.<br/>
+                            - Para el tipo de instancia, ir a la opción de "Acciones de instancia" y luego a "Cambiar tipo de instancia".<br/>
+                            - Para el tamaño del volumen EBS, ir a la opción de "Acciones de volumen" y luego a "Modificar volumen" (visatas 2-3).<br/>
+                            - Aplicar cambios (vista 4).<br/>
+                            - Se puede observar el nuevo tamaño del volumen EBS (vista 5-6).<br/>
+                            - Se levanta la instancia de nuevo y se puede observar el nuevo tipo de instancia t2.small y el nuevo tamaño del almacenamiento EBS de 10 GB (vista 7).
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS05+Captura+del+reescalado+de+la+instancia]" alt="Captura del reescalado de la instancia" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e2-cs05">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS05-rescaling_K1.png" alt="Capturas del reescalado de la instancia - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS05-rescaling_E1.png" alt="Capturas del reescalado de la instancia - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS05-rescaling_T1.png" alt="Capturas del reescalado de la instancia - Vista 3" class="rounded shadow">
+                                </div>                                
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS05-rescaling_K2.png" alt="Capturas del reescalado de la instancia - Vista 4" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS05-rescaling_E2.png" alt="Capturas del reescalado de la instancia - Vista 5" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS05-rescaling_T2.png" alt="Capturas del reescalado de la instancia - Vista 6" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E2-CS05-rescaling_K3.png" alt="Capturas del reescalado de la instancia - Vista 7" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e2-cs05', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e2-cs05', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e2-cs05', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs05', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs05', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs05', 3)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs05', 4)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs05', 5)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e2-cs05', 6)"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
         <!-- SECCIÓN #3 INFRAESTRUCTURA ELÁSTICA Y BALANCEADA (ELB + ASG) -->
         <section id="s3" class="mb-12">
             <h2 class="text-3xl font-bold border-b-2 pb-2 mb-6 text-blue-700 dark:text-blue-400">
-                Sección #3: Infraestructura Elástica y Balanceada
+                Sección 3: Infraestructura Elástica y Balanceada
             </h2>
             <div class="content-card space-y-8">
                 <h3 class="text-xl font-semibold text-gray-700 border-b pb-2 dark:text-gray-200">Procedimiento Detallado del Lab 6 (ELB y Auto Scaling Group)</h3>
@@ -751,45 +1190,222 @@
                     <img src="./img/img_rbd_s3_infra_balanceo_autoescaling_esquema_aws.png" alt="Esquema de AWS ELB y Auto Scaling" class="mx-auto rounded-lg shadow-md max-w-full h-auto">
                 </div>
 
+                <!-- LISTA DE PASOS/CAPTURAS -->
                 <div class="space-y-6 dark:text-gray-300">
                     <!-- Captura 1 -->
                     <div class="border p-4 rounded-lg bg-purple-50 border-purple-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-purple-800 mb-2 dark:text-purple-400">[CS01] Captura de la creación de la AMI</h4>
+                        <h4 class="text-lg font-bold text-purple-800 mb-2 dark:text-purple-400">[CS01] Capturas de la creación de la AMI</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS01+Captura+de+la+creación+de+la+AMI]" alt="Captura de la creación de la AMI" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br />
+                            Capturas del proceso de creación de una AMI (Amazon Machine Image) a partir de una instancia EC2 existente llamada "WebServer1":<br/>
+                            - Menú para seleccionar la opción de crear imagen (vista 1).<br/>
+                            - Selección de la imagen y configuración de los detalles (vista 2).<br/>
+                            - Visualización de la nueva AMI en la consola de AWS (vista 3).
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS01+Captura+de+la+creación+de+la+AMI]" alt="Captura de la creación de la AMI" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e3-cs01">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS01-001_create_image_WebServer1.png" alt="Capturas de la creación de la AMI - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS01-002_create_image_WebServer1_ok.png" alt="Capturas de la creación de la AMI - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS01-003_banner_nueva_AMI.png" alt="Capturas de la creación de la AMI - Vista 3" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS01-004_AMI_section_ok.png" alt="Capturas de la creación de la AMI - Vista 4" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e3-cs01', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e3-cs01', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e3-cs01', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs01', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs01', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs01', 3)"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Captura 2 -->
                     <div class="border p-4 rounded-lg bg-teal-50 border-teal-200 dark:bg-gray-700 dark:border-gray-600">
                         <h4 class="text-lg font-bold text-teal-800 mb-2 dark:text-teal-400">[CS02] Captura de la infraestructura VPC creada</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS02+Captura+de+la+infraestructura+VPC+creada]" alt="Captura de la infraestructura VPC creada" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            Captura del diagrama de la infraestructura VPC creada para el despliegue del ELB y el Auto Scaling Group<br/>
+                            Muestra las subredes públicas y privadas, así como los componentes principales.
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS02+Captura+de+la+infraestructura+VPC+creada]" alt="Captura de la infraestructura VPC creada" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e3-cs02">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS02-005_diagrama_VPC-creada.png" alt="Captura de la creación de la AMI" class="rounded shadow">
+                                </div>
+                            </div>
+                        </div>                        
                     </div>
 
                     <!-- Captura 3 -->
                     <div class="border p-4 rounded-lg bg-orange-50 border-orange-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-orange-800 mb-2 dark:text-orange-400">[CS03] Captura del ELB creado</h4>
+                        <h4 class="text-lg font-bold text-orange-800 mb-2 dark:text-orange-400">[CS03] Capturas del ELB creado</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS03+Captura+del+ELB+creado]" alt="Captura del Elastic Load Balancer (ELB) creado" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Captura de la confirmación de la creación del ELB (Elastic Load Balancer) (vista 1). <br/>
+                            - Captura del ELB aprovisionandose después de haber sido creado (vista 2).
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS03+Captura+del+ELB+creado]" alt="Captura del Elastic Load Balancer (ELB) creado" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e3-cs03">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS03-006_create-load-balancer.png" alt="Capturas del Elastic Load Balancer (ELB) creado - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS03-007_create_load-bal_ok.png" alt="Capturas del Elastic Load Balancer (ELB) creado - Vista 2" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e3-cs03', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e3-cs03', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e3-cs03', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs03', 1)"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Captura 4 -->
                     <div class="border p-4 rounded-lg bg-cyan-50 border-cyan-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-cyan-800 mb-2 dark:text-cyan-400">[CS04] Captura del autoescaling creado</h4>
+                        <h4 class="text-lg font-bold text-cyan-800 mb-2 dark:text-cyan-400">[CS04] Capturas del autoescaling creado</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS04+Captura+del+autoescaling+creado]" alt="Captura del Auto Scaling Group creado" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            Capturas del proceso de configuración y creación del Auto Scaling Group (ASG):<br/>
+                            - Configurar grupo de autoescalado y plantilla de lanzamiento (vista 1).<br/>
+                            - Configuración de red y subredes (vista 2).<br/>
+                            - Integración con otros servicios y asignación al ELB (Elastic Load Balancer) (vista 3).<br/>
+                            - Configuración políticas de escalado basadas en métricas de CPU (vistas 4-6).<br/>
+                            - Captura de la creación del grupo de autoescalado (vista 7).
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS04+Captura+del+autoescaling+creado]" alt="Captura del Auto Scaling Group creado" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e3-cs04">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS04-008_create-autoscaling-group.png" alt="Capturas del Auto Scaling Group creado - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS04-009_autoscaling-gr-private-subnets.png" alt="Capturas del Auto Scaling Group creado - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS04-010_autoscaling-gr.png" alt="Capturas del Auto Scaling Group creado - Vista 3" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS04-011_autoscaling-gr.png" alt="Capturas del Auto Scaling Group creado - Vista 4" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS04-012_autoscaling-gr.png" alt="Capturas del Auto Scaling Group creado - Vista 5" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS04-013_autoscaling-gr_CLOUDWATCH.png" alt="Capturas del Auto Scaling Group creado - Vista 6" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS04-014_autoscaling-gr_ok.png" alt="Capturas del Auto Scaling Group creado - Vista 7" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e3-cs04', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e3-cs04', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e3-cs04', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs04', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs04', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs04', 3)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs04', 4)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs04', 5)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs04', 6)"></div>
+                            </div>
+                        </div>                        
                     </div>
                     
                     <!-- Captura 5 -->
                     <div class="border p-4 rounded-lg bg-red-100 border-red-300 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="text-lg font-bold text-red-900 mb-2 dark:text-red-400">[CS05] Captura de las alarmas en Cloudwatch</h4>
+                        <h4 class="text-lg font-bold text-red-900 mb-2 dark:text-red-400">[CS05] Capturas de las alarmas en Cloudwatch</h4>
                         <p class="text-sm text-gray-700 mb-3 dark:text-gray-300">
-                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS05+Captura+de+las+alarmas+en+Cloudwatch]" alt="Captura de las alarmas de Cloudwatch" class="mx-auto rounded shadow max-w-full h-auto">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            Capturas de las alarmas configuradas en CloudWatch para el Auto Scaling Group:<br/>
+                            - Vista alarmas configuradas para escalar hacia arriba (vista 1).<br/>
+                            - Vista del monitor de carga de CPU utilizado para la alarma (vista 2).<br/>
+                            - Vista de aviso de alarma cuando se supera el umbral (vista 3).
+                        </p>
+                        <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS05+Captura+de+las+alarmas+en+Cloudwatch]" alt="Captura de las alarmas de Cloudwatch" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e3-cs05">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS05-015_cloudwatch_alarms_lab.png" alt="Capturas de las alarmas de Cloudwatch - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS05-016_cloudwatch_alarms.png" alt="Capturas de las alarmas de Cloudwatch - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E3-CS05-017_cloudwatch_alarms.png" alt="Capturas de las alarmas de Cloudwatch - Vista 3" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e3-cs05', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e3-cs05', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e3-cs05', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs05', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e3-cs05', 2)"></div>
+                            </div>
+                        </div>                            
                     </div>
                 </div>
             </div>
@@ -798,39 +1414,295 @@
         <!-- SECCIÓN #4 EXPLORA AWS EDUCATE (LAB EXTRA) -->
         <section id="s4" class="mb-12">
             <h2 class="text-3xl font-bold border-b-2 pb-2 mb-6 text-blue-700 dark:text-blue-400">
-                Sección #4 Explora AWS Educate
+                Sección 4: Explora AWS Educate
             </h2>
             <div class="content-card space-y-6">
                 <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Laboratorio Elegido: Creación y Configuración de una VPC</h3>
                 <p class="text-gray-600 leading-relaxed dark:text-gray-400">
-                    Hemos seleccionado el laboratorio enfocado en la **creación y configuración de una Amazon VPC** (Virtual Private Cloud) para consolidar los conocimientos sobre el aislamiento y la topología de red en AWS. A continuación, se detalla el proceso seguido con capturas de pantalla y su explicación.
+                    Hemos seleccionado el laboratorio enfocado en la <strong>creación y configuración de una Amazon VPC</strong> (Virtual Private Cloud) para consolidar los conocimientos sobre el aislamiento y la topología de red en AWS. A continuación, se detalla el proceso seguido con capturas de pantalla y su explicación.
                 </p>
 
-                <!-- ESTRUCTURA PARA LAS CAPTURAS EXTRA -->
+                <!-- Explicación del proceso -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-gray-700 mb-2 dark:text-gray-200">Pasos CS01</h4>
+                    <blockquote>
+                        Vamos a utilizar Amazon Virtual Private Cloud (VPC) para crear su propia VPC y agregar componentes adicionales con el fin de producir una red personalizada. También creará un grupo de seguridad. A continuación, deberá configurar y personalizar una instancia de EC2 para ejecutar un servidor web e iniciará la instancia de EC2 para ejecutarse en una subred en la VPC.
+                        <br/><br/>
+                        Amazon Virtual Private Cloud (Amazon VPC) le permite iniciar recursos de Amazon Web Services (AWS) en una red virtual que haya definido. Dicha red virtual se asemeja mucho a una red tradicional que ejecutaría en su propio centro de datos, con los beneficios de utilizar la infraestructura escalable de AWS. Puede crear una VPC que abarque varias zonas de disponibilidad.
+                    </blockquote>
+                    <img src="/img/E4-CS00.png" alt="Captura 0 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">
+
+                    <h4 class="text-lg font-bold text-gray-700 mb-2 dark:text-gray-200">Pasos CS02</h4>
+                    <blockquote>
+                        Crear dos subredes adicionales para la VPC en una segunda zona de disponibilidad. Tener subredes en varias zonas de disponibilidad en una VPC es útil para implementar soluciones que ofrecen alta disponibilidad.
+                        <br/><br/>
+                        Después de crear una VPC como ya lo hizo, puede seguir configurándola, por ejemplo, agregando más subredes. Cada subred que crea reside por completo en una zona de disponibilidad. 
+                    </blockquote>
+
+                    <h4 class="text-lg font-bold text-gray-700 mb-2 dark:text-gray-200">Pasos CS03</h4>
+                    <blockquote>
+                        Ahora, configurará esta nueva subred privada para dirigir el tráfico de Internet a la puerta de enlace NAT a fin de que los recursos de la segunda subred privada puedan conectarse a Internet y, a la vez, mantener los recursos privados. Esto se realiza mediante la configuración de una tabla de enrutamiento.
+                        <br/><br/>
+                        Una tabla de enrutamiento contiene un conjunto de reglas llamadas rutas, que se utilizan para determinar hacia dónde se dirige el tráfico de red. Cada subred de una VPC debe estar asociada a una tabla de enrutamiento, que es la que controla el enrutamiento de la subred.                    
+                    </blockquote>
+
+                    <h4 class="text-lg font-bold text-gray-700 mb-2 dark:text-gray-200">Pasos CS04</h4>
+                    <blockquote>
+                        Configurar un grupo de seguridad para la VPC. Un grupo de seguridad actúa como un firewall virtual que controla el tráfico de entrada y salida de las instancias de Amazon EC2.
+                    </blockquote>
+
+                    <h4 class="text-lg font-bold text-gray-700 mb-2 dark:text-gray-200">Pasos CS05</h4>
+                    <blockquote>
+                        Lanzar una instancia de Amazon EC2 en la subred pública de la VPC y configurar la instancia para que ejecute un servidor web.
+                    </blockquote>
+
+                    <h4 class="text-lg font-bold text-gray-700 mb-2 dark:text-gray-200">Pasos CS06</h4>
+                    <blockquote>
+                        Resultado final: Acceder al servidor web desde un navegador web utilizando la dirección IP pública de la instancia de EC2.
+                    </blockquote>                    
+                </div>
+
+                <!-- LISTA DE PASOS/CAPTURAS -->
                 <div class="grid md:grid-cols-2 gap-6 mt-6 dark:text-gray-300">
-                    <!-- Captura 1 -->
+                    <!-- Capturas 1 -->
                     <div class="border p-3 rounded-lg bg-gray-50 border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS01] Captura 1</h4>
-                        <p class="text-xs text-gray-600 mb-2 dark:text-gray-400"><strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS01+Captura+1]" alt="Captura 1 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">
+                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS01] Capturas 1</h4>
+                        <p class="text-sm text-gray-600 mb-2 dark:text-gray-400">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            Entrar en el Servicio VPC. Creamos una nueva VPC con estas configuraciones:
+                        </p>
+                        <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS01+Captura+1]" alt="Captura 1 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e4-cs01">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS01-001.png" alt="Capturas 1 del laboratorio extra - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS01-002.png" alt="Capturas 1 del laboratorio extra - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS01-003.png" alt="Capturas 1 del laboratorio extra - Vista 3" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS01-004.png" alt="Capturas 1 del laboratorio extra - Vista 4" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS01-005.png" alt="Capturas 1 del laboratorio extra - Vista 5" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e4-cs01', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e4-cs01', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e4-cs01', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs01', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs01', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs01', 3)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs01', 4)"></div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Captura 2 -->
+                    <!-- Capturas 2 -->
                     <div class="border p-3 rounded-lg bg-gray-50 border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS02] Captura 2</h4>
-                        <p class="text-xs text-gray-600 mb-2 dark:text-gray-400"><strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS02+Captura+2]" alt="Captura 2 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">
+                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS02] Capturas 2</h4>
+                        <p class="text-sm text-gray-600 mb-2 dark:text-gray-400">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Desde “Subnet” en el panel izquierdo crear una segunda subred publica (vistas 1-2).<br/>
+                            - Desde “Subnet” en el panel izquierdo crear una segunda subred privada (vistas 3-4).<br/>
+                        </p>
+                        <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS02+Captura+2]" alt="Captura 2 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e4-cs02">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS02-006.png" alt="Capturas 2 del laboratorio extra - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS02-007.png" alt="Capturas 2 del laboratorio extra - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS02-008.png" alt="Capturas 2 del laboratorio extra - Vista 3" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS02-009.png" alt="Capturas 2 del laboratorio extra - Vista 4" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e4-cs02', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e4-cs02', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e4-cs02', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs02', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs02', 2)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs02', 3)"></div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Captura 3 -->
+                    <!-- Capturas 3 -->
                     <div class="border p-3 rounded-lg bg-gray-50 border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS03] Captura 3</h4>
-                        <p class="text-xs text-gray-600 mb-2 dark:text-gray-400"><strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS03+Captura+3]" alt="Captura 3 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">
+                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS03] Capturas 3</h4>
+                        <p class="text-sm text-gray-600 mb-2 dark:text-gray-400">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            Crear route table y asociarlas a las subredes (privada y publica).
+                        </p>
+                        <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS03+Captura+3]" alt="Captura 3 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e4-cs03">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS03-010.png" alt="Capturas 3 del laboratorio extra - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS03-011.png" alt="Capturas 3 del laboratorio extra - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS03-012.png" alt="Capturas 3 del laboratorio extra - Vista 3" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e4-cs03', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e4-cs03', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e4-cs03', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs03', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs03', 2)"></div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Captura 4 -->
+                    <!-- Capturas 4 -->
                     <div class="border p-3 rounded-lg bg-gray-50 border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                         <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS04] Captura 4</h4>
-                        <p class="text-xs text-gray-600 mb-2 dark:text-gray-400"><strong class="text-blue-600 dark:text-blue-400">Explicación:</strong> <span class="pendiente">[PENDIENTE]</span></p>
-                        <img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS04+Captura+4]" alt="Captura 4 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">
+                        <p class="text-sm text-gray-600 mb-2 dark:text-gray-400">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            Configuración security group.
+                        </p>
+                        <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS04+Captura+4]" alt="Captura 4 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e4-cs04">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS04-013.png" alt="Captura 4 del laboratorio extra" class="rounded shadow">
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <!-- Capturas 5 -->
+                    <div class="border p-3 rounded-lg bg-gray-50 border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS05] Capturas 5</h4>
+                        <p class="text-sm text-gray-600 mb-2 dark:text-gray-400">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Entrar en el servicio EC2 para crear una nueva EC2 instance.<br/>
+                            - Initialising instance…<br/>
+                            - Instance launched…<br/>
+                        </p>
+                        <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS05+Captura+5]" alt="Captura 5 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e4-cs05">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS05-014.png" alt="Capturas 5 del laboratorio extra - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS05-015.png" alt="Capturas 5 del laboratorio extra - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS05-016.png" alt="Capturas 5 del laboratorio extra - Vista 3" class="rounded shadow">
+                                </div>                                
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e4-cs05', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e4-cs05', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e4-cs05', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs05', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs05', 2)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Capturas 6 -->
+                    <div class="border p-3 rounded-lg bg-gray-50 border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+                        <h4 class="font-semibold text-gray-800 mb-1 dark:text-gray-200">[CS06] Capturas 6</h4>
+                        <p class="text-sm text-gray-600 mb-2 dark:text-gray-400">
+                            <strong class="text-blue-600 dark:text-blue-400">Explicación:</strong>
+                            <!--<span class="pendiente">[PENDIENTE]</span>-->
+                            <br/>
+                            - Seleccionar el servidor Web Server 1.<br/>
+                            - Copiar el DNS publico IPv4.<br/>
+                            - Abrir nueva pestaña del navegador web.
+                        </p>
+                        <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS06+Captura+6]" alt="Captura 6 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
+                        <div class="image-carousel" id="carousel-e4-cs06">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS06-017.png" alt="Capturas 6 del laboratorio extra - Vista 1" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS06-018.png" alt="Capturas 6 del laboratorio extra - Vista 2" class="rounded shadow">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="/img/E4-CS06-019.png" alt="Capturas 6 del laboratorio extra - Vista 3" class="rounded shadow">
+                                </div>
+                            </div>
+                            <!-- Controles del carrusel -->
+                            <button class="carousel-controls carousel-prev" onclick="moveSlide('carousel-e4-cs06', -1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-controls carousel-next" onclick="moveSlide('carousel-e4-cs06', 1)">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators">
+                                <div class="carousel-dot active" onclick="goToSlide('carousel-e4-cs06', 0)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs06', 1)"></div>
+                                <div class="carousel-dot" onclick="goToSlide('carousel-e4-cs06', 2)"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -982,6 +1854,60 @@
         themeToggleMobile.addEventListener('click', () => {
             const isDark = html.classList.contains('dark');
             applyTheme(!isDark);
+        });
+
+        // 5. Script para carruseles de imágenes
+        const carousels = {};
+
+        function initCarousel(carouselId) {
+            carousels[carouselId] = {
+                currentSlide: 0,
+                totalSlides: document.querySelectorAll(`#${carouselId} .carousel-slide`).length
+            };
+        }
+
+        function moveSlide(carouselId, direction) {
+            if (!carousels[carouselId]) initCarousel(carouselId);
+            
+            const carousel = carousels[carouselId];
+            carousel.currentSlide += direction;
+            
+            if (carousel.currentSlide >= carousel.totalSlides) {
+                carousel.currentSlide = 0;
+            } else if (carousel.currentSlide < 0) {
+                carousel.currentSlide = carousel.totalSlides - 1;
+            }
+            
+            updateCarouselView(carouselId);
+        }
+
+        function goToSlide(carouselId, slideIndex) {
+            if (!carousels[carouselId]) initCarousel(carouselId);
+            
+            carousels[carouselId].currentSlide = slideIndex;
+            updateCarouselView(carouselId);
+        }
+
+        function updateCarouselView(carouselId) {
+            const container = document.querySelector(`#${carouselId} .carousel-container`);
+            const dots = document.querySelectorAll(`#${carouselId} .carousel-dot`);
+            const currentSlide = carousels[carouselId].currentSlide;
+            
+            // Mover el contenedor
+            container.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Actualizar indicadores
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Inicializar carruseles al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel('carousel-cs01');
+            const notionUrl = "https://www.notion.so/GRUPO_12-Reto-BigData-2877ced341bb81db901ed4ea50dc9fd2";
+            document.getElementById('notionLink').href = notionUrl;
+            document.getElementById('notionLinkMobile').href = notionUrl;
         });
     </script>
 </body>
