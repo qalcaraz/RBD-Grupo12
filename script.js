@@ -259,3 +259,55 @@ document.getElementById('notionLink').addEventListener('click', (event) => {
 document.getElementById('notionLinkMobile').addEventListener('click', (event) => {
     event.stopPropagation();
 });
+
+// Funcionalidad del modal de imagen
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    
+    // Configurar imagen del modal
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    modalTitle.textContent = imgElement.alt;
+    
+    // Mostrar modal
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden'; // Prevenir scroll
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto'; // Restaurar scroll
+}
+
+// Event listeners para el modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Cerrar modal
+    document.getElementById('closeModal').addEventListener('click', closeImageModal);
+    
+    // Cerrar modal al hacer clic en el fondo
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeImageModal();
+        }
+    });
+    
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+    
+    // Añadir click listener a todas las imágenes de carrusel
+    const carouselImages = document.querySelectorAll('.carousel-slide img');
+    carouselImages.forEach(img => {
+        img.addEventListener('click', function() {
+            openImageModal(this);
+        });
+    });
+});

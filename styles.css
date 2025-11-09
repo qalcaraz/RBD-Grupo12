@@ -488,6 +488,65 @@ blockquote {
     background-color: #374151;
 }
 
+/* Estilos para el modal de imagen */
+#imageModal {
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+#imageModal.hidden {
+    display: none !important;
+}
+
+#modalImage {
+    max-height: 85vh;
+    max-width: 90vw;
+    cursor: zoom-out;
+    animation: zoomIn 0.3s ease-in-out;
+}
+
+#closeModal {
+    transition: all 0.2s ease;
+}
+
+#closeModal:hover {
+    transform: scale(1.1);
+}
+
+#modalTitle {
+    backdrop-filter: blur(10px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Cursor de zoom para las imágenes en carrusel */
+.carousel-slide img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.carousel-slide img:hover {
+    transform: scale(1.02);
+}
+
 .accordion-content-inner {
     padding: 2rem;
 }
