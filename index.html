@@ -11,501 +11,7 @@
             darkMode: 'class',
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .container {
-            max-width: 1200px;
-        }
-
-        /* Estilos generales para ambos modos */
-        .content-card {
-            /*padding: 1.5rem;*/
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .content-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Estilo para destacar la asignación de tareas */
-        .task-assign {
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: block;
-            margin-top: 0.25rem;
-        }
-
-        .elisa {
-            color: #10b981;
-        }
-
-        .tomas {
-            color: #f97316;
-        }
-
-        .kike {
-            color: #6366f1;
-        }
-
-        /* Estilo para el marcador [PENDIENTE] */
-        .pendiente {
-            background-color: #fef3c7;
-            /* yellow-100 */
-            color: #d97706;
-            /* amber-700 */
-            font-weight: 600;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            display: inline-block;
-        }
-
-        /* Estilos para la sección de título */
-        .hero-background {
-            background-color: #f7f9fc;
-            border: 1px solid #e0e7ff;
-            text-align: left;
-            padding: 2rem;
-        }
-
-        .dark .hero-background {
-            background-color: #1f2937;
-            border: 1px solid #374151;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            min-height: 400px;
-        }
-
-        .hero-text {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            z-index: 10;
-            position: relative;
-            padding-right: 1rem;
-        }
-
-        .hero-image-container {
-            flex: 3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding-left: 1rem;
-            background-color: transparent;
-            border-radius: 16px;
-            box-shadow: none !important;
-            border: none !important;
-            padding: 1.5rem;
-            margin: 0.5rem;
-            min-height: 300px;
-        }
-
-        .dark .hero-image-container {
-            background-color: #374151;
-            border-color: #4b5563;
-            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-text,
-            .hero-image-container {
-                flex: 1;
-                padding: 0;
-            }
-
-            .hero-image-container {
-                margin: 1rem 0;
-                padding: 1rem;
-            }
-        }
-
-        /* BANNER DE CABECERA */
-        .header-banner {
-            background-image: url('./img/img_logo_bigdata.png');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            padding: 1.5rem 0;
-        }
-
-        .header-banner-overlay {
-            background-color: rgba(0, 0, 0, 0.25);
-            /* Oscuro para legibilidad */
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-
-        /* LIGHT MODE */
-        .light body {
-            background-color: #f7f9fc;
-            color: #1f2937;
-        }
-
-        .light .content-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border: 2px solid #e2e8f0;
-        }
-
-        .light .content-card:hover {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-
-        .light .header-bg {
-            background-color: #1f2937;
-        }
-
-        .light header {
-            background-color: #1f2937;
-        }
-
-        /* DARK MODE */
-        .dark body {
-            background-color: #1f2937;
-            color: #e5e7eb;
-        }
-
-        .dark .content-card {
-            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
-            border: 2px solid #4b5563;
-        }
-
-        .dark .content-card:hover {
-            background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
-            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-        }
-
-        .dark .header-bg {
-            background-color: #111827;
-        }
-
-        .dark header {
-            background-color: #111827;
-        }
-
-        .dark table th {
-            background-color: #4b5563;
-            color: #d1d5db;
-        }
-
-        .dark table tr {
-            background-color: #374151;
-            border-bottom: 1px solid #4b5563;
-        }
-
-        .dark .bg-gray-100 {
-            background-color: #4b5563;
-        }
-
-        .dark .pendiente {
-            background-color: #4a3400;
-            color: #fcd34d;
-        }
-
-        /* Estilos para el menú móvil */
-        #mobileMenu {
-            transition: all 0.3s ease-in-out;
-        }
-
-        #mobileMenu.hidden {
-            transform: translateY(-10px);
-            opacity: 0;
-        }
-
-        /* Estilos para navegación activa */
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link.active {
-            color: #3b82f6 !important;
-            /* blue-500 */
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 2px;
-        }
-
-        .dark .nav-link.active {
-            color: #60a5fa !important;
-            /* blue-400 */
-            border-bottom-color: #60a5fa;
-        }
-
-        /* Estilos para enlaces externos */
-        .external-link {
-            color: #2563eb;
-            /* blue-600 */
-            text-decoration: underline;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-
-        .external-link:hover {
-            color: #1d4ed8;
-            /* blue-700 */
-            text-decoration: none;
-        }
-
-        .dark .external-link {
-            color: #60a5fa;
-            /* blue-400 */
-        }
-
-        .dark .external-link:hover {
-            color: #93c5fd;
-            /* blue-300 */
-        }
-
-        /* Estilos para el carrusel de imágenes */
-        .image-carousel {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            background: #f8f9fa;
-            max-width: 100%;
-        }
-
-        .dark .image-carousel {
-            background: #374151;
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-
-        .carousel-slide img {
-            max-width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            border-radius: 6px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .carousel-controls:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .carousel-prev {
-            left: 10px;
-        }
-
-        .carousel-next {
-            right: 10px;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #cbd5e1;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .carousel-dot.active {
-            background: #3b82f6;
-        }
-
-        .dark .carousel-dot {
-            background: #6b7280;
-        }
-
-        .dark .carousel-dot.active {
-            background: #60a5fa;
-        }
-
-        /* Estilos para las listas desordenadas */
-        .list-disc li {
-            list-style-type: disc;
-            margin-left: 1rem;
-        }
-
-        .list-disc {
-            list-style-position: inside;
-            padding-left: 1rem;
-        }
-
-        .list-inside {
-            list-style-position: inside;
-            padding-left: 0;
-        }
-
-        /* Responsive para carruseles */
-        @media (max-width: 768px) {
-            .carousel-controls {
-                width: 35px;
-                height: 35px;
-            }
-
-            .carousel-prev {
-                left: 5px;
-            }
-
-            .carousel-next {
-                right: 5px;
-            }
-
-            .carousel-slide img {
-                max-height: 300px;
-            }
-        }
-
-        /* Estilos para las listas desordenadas */
-        .list-disc li {
-            margin-left: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .list-disc {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .list-inside {
-            list-style-position: inside;
-            padding-left: 0;
-        }
-
-        /* Estilos para blockquotes */
-        blockquote {
-            text-align: justify;
-            font-style: italic;
-            font-size: 0.875rem;
-            border-left: 3px solid #3b82f6;
-            padding-left: 1rem;
-            margin: 1rem 0;
-            color: #4b5563;
-            background-color: #f8fafc;
-            padding: 1rem;
-            border-radius: 6px;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        }
-
-        .dark blockquote {
-            color: #d1d5db;
-            background-color: #404958;
-            border-left-color: #879db8;
-        }
-
-        /* Estilos para el acordeón */
-        .accordion-section {
-            margin-bottom: 1rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .accordion-header {
-            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-            color: white;
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            border: none;
-            width: 100%;
-            text-align: left;
-        }
-
-        .accordion-header:hover {
-            background: linear-gradient(135deg, #1e40af, #2563eb);
-            transform: translateY(-2px);
-        }
-
-        .dark .accordion-header {
-            background: linear-gradient(135deg, #374151, #1f2937);
-        }
-
-        .dark .accordion-header:hover {
-            background: linear-gradient(135deg, #4b5563, #374151);
-        }
-
-        .accordion-chevron {
-            transition: transform 0.3s ease;
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-            background-color: white;
-            opacity: 0;
-        }
-
-        .dark .accordion-content {
-            background-color: #374151;
-        }
-
-        .accordion-content-inner {
-            padding: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="min-h-screen">
@@ -1339,11 +845,11 @@
                                 indicando que la instancia tiene protección contra terminación activada (vista 4).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS02+Captura+de+la+página+web+en+el+navegador]" alt="Captura de la página web en el navegador" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e2-cs01">
+                            <div class="image-carousel" id="carousel-e2-cs01" data-view-names='[" ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E2-CS01_termination-protection_K1.png"
-                                            alt="Capturas de EC2 con protección contra terminación - Vista 1"
+                                            alt="Capturas de EC2 con protección contra terminación - Vista 1 "
                                             class="rounded shadow">
                                     </div>
                                     <div class="carousel-slide">
@@ -1362,6 +868,10 @@
                                             class="rounded shadow">
                                     </div>
                                 </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1</span>
+                                </div>                                
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
                                     onclick="moveSlide('carousel-e2-cs01', -1)">
@@ -1400,7 +910,7 @@
                                 levantadas por este grupo.
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS02+Captura+de+la+página+web+en+el+navegador]" alt="Captura de la página web en el navegador" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e2-cs02">
+                            <div class="image-carousel" id="carousel-e2-cs02" data-view-names='[" ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E2-CS02_hello-world_E1.png"
@@ -1418,6 +928,10 @@
                                             class="rounded shadow">
                                     </div>
                                 </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
+                                </div>                                
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
                                     onclick="moveSlide('carousel-e2-cs02', -1)">
@@ -1457,7 +971,8 @@
                                 (vista 4).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS03+Captura+del+monitoreo+de+la+instancia]" alt="Captura del monitoreo de la instancia" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e2-cs03">
+
+                            <div class="image-carousel" id="carousel-e2-cs03" data-view-names='[" ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E2-CS03_monitoreo-EC2_E1.jpg"
@@ -1480,6 +995,10 @@
                                             class="rounded shadow">
                                     </div>
                                 </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1</span>
+                                </div>                                
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
                                     onclick="moveSlide('carousel-e2-cs03', -1)">
@@ -1488,6 +1007,7 @@
                                             d="M15 19l-7-7 7-7"></path>
                                     </svg>
                                 </button>
+                                <!-- Nombre de la vista actual -->
                                 <button class="carousel-controls carousel-next"
                                     onclick="moveSlide('carousel-e2-cs03', 1)">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1520,7 +1040,7 @@
                                 tráfico HTTP (puerto 80) desde cualquier dirección IP (vistas 3-4).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS04+Captura+del+grupo+de+seguridad+HTTP]" alt="Captura del grupo de seguridad" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e2-cs04">
+                            <div class="image-carousel" id="carousel-e2-cs04" data-view-names='[" ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E2-CS04_ok-security-rule_K1.png"
@@ -1539,6 +1059,10 @@
                                             alt="Capturas del grupo de seguridad - Vista 4" class="rounded shadow">
                                     </div>
                                 </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1</span>
+                                </div>                                   
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
                                     onclick="moveSlide('carousel-e2-cs04', -1)">
@@ -1586,7 +1110,7 @@
                                 t2.small y el nuevo tamaño del almacenamiento EBS de 10 GB (vista 7).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS05+Captura+del+reescalado+de+la+instancia]" alt="Captura del reescalado de la instancia" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e2-cs05">
+                            <div class="image-carousel" id="carousel-e2-cs05" data-view-names='[" ", " ", " ", " ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E2-CS05-rescaling_K1.png"
@@ -1624,6 +1148,10 @@
                                             class="rounded shadow">
                                     </div>
                                 </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1</span>
+                                </div>                                  
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
                                     onclick="moveSlide('carousel-e2-cs05', -1)">
@@ -1705,7 +1233,7 @@
                                 - Visualización de la nueva AMI en la consola de AWS (vista 3).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS01+Captura+de+la+creación+de+la+AMI]" alt="Captura de la creación de la AMI" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e3-cs01">
+                            <div class="image-carousel" id="carousel-e3-cs01" data-view-names='[" ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E3-CS01-001_create_image_WebServer1.png"
@@ -1723,6 +1251,10 @@
                                         <img src="./img/E3-CS01-004_AMI_section_ok.png"
                                             alt="Capturas de la creación de la AMI - Vista 4" class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1</span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -1787,7 +1319,7 @@
                                 - Captura del ELB aprovisionandose después de haber sido creado (vista 2).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS03+Captura+del+ELB+creado]" alt="Captura del Elastic Load Balancer (ELB) creado" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e3-cs03">
+                            <div class="image-carousel" id="carousel-e3-cs03" data-view-names='[" ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E3-CS03-006_create-load-balancer.png"
@@ -1799,6 +1331,10 @@
                                             alt="Capturas del Elastic Load Balancer (ELB) creado - Vista 2"
                                             class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -1842,7 +1378,7 @@
                                 - Captura de la creación del grupo de autoescalado (vista 7).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS04+Captura+del+autoescaling+creado]" alt="Captura del Auto Scaling Group creado" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e3-cs04">
+                            <div class="image-carousel" id="carousel-e3-cs04" data-view-names='[" ", " ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E3-CS04-008_create-autoscaling-group.png"
@@ -1879,6 +1415,10 @@
                                             alt="Capturas del Auto Scaling Group creado - Vista 7"
                                             class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -1923,7 +1463,7 @@
                                 - Vista de aviso de alarma cuando se supera el umbral (vista 3).
                             </p>
                             <!--<img src="https://placehold.co/800x400/f3f4f6/333333?text=[CS05+Captura+de+las+alarmas+en+Cloudwatch]" alt="Captura de las alarmas de Cloudwatch" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e3-cs05">
+                            <div class="image-carousel" id="carousel-e3-cs05" data-view-names='[" ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E3-CS05-015_cloudwatch_alarms_lab.png"
@@ -1940,6 +1480,10 @@
                                             alt="Capturas de las alarmas de Cloudwatch - Vista 3"
                                             class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -2070,7 +1614,7 @@
                                 Entrar en el Servicio VPC. Creamos una nueva VPC con estas configuraciones:
                             </p>
                             <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS01+Captura+1]" alt="Captura 1 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e4-cs01">
+                            <div class="image-carousel" id="carousel-e4-cs01" data-view-names='[" ", " ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E4-CS01-001.png"
@@ -2092,6 +1636,10 @@
                                         <img src="./img/E4-CS01-005.png"
                                             alt="Capturas 1 del laboratorio extra - Vista 5" class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -2133,7 +1681,7 @@
                                 3-4).<br />
                             </p>
                             <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS02+Captura+2]" alt="Captura 2 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e4-cs02">
+                            <div class="image-carousel" id="carousel-e4-cs02" data-view-names='[" ", " ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E4-CS02-006.png"
@@ -2151,6 +1699,10 @@
                                         <img src="./img/E4-CS02-009.png"
                                             alt="Capturas 2 del laboratorio extra - Vista 4" class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -2188,7 +1740,7 @@
                                 Crear route table y asociarlas a las subredes (privada y publica).
                             </p>
                             <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS03+Captura+3]" alt="Captura 3 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e4-cs03">
+                            <div class="image-carousel" id="carousel-e4-cs03" data-view-names='[" ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E4-CS03-010.png"
@@ -2202,6 +1754,10 @@
                                         <img src="./img/E4-CS03-012.png"
                                             alt="Capturas 3 del laboratorio extra - Vista 3" class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -2260,7 +1816,7 @@
                                 - Instance launched…<br />
                             </p>
                             <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS05+Captura+5]" alt="Captura 5 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e4-cs05">
+                            <div class="image-carousel" id="carousel-e4-cs05" data-view-names='[" ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E4-CS05-014.png"
@@ -2274,6 +1830,10 @@
                                         <img src="./img/E4-CS05-016.png"
                                             alt="Capturas 5 del laboratorio extra - Vista 3" class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -2312,7 +1872,7 @@
                                 - Abrir nueva pestaña del navegador web.
                             </p>
                             <!--<img src="https://placehold.co/400x250/f3f4f6/333333?text=[CS06+Captura+6]" alt="Captura 6 del laboratorio extra" class="mx-auto rounded shadow max-w-full h-auto">-->
-                            <div class="image-carousel" id="carousel-e4-cs06">
+                            <div class="image-carousel" id="carousel-e4-cs06" data-view-names='[" ", " ", " "]'>
                                 <div class="carousel-container">
                                     <div class="carousel-slide">
                                         <img src="./img/E4-CS06-017.png"
@@ -2326,6 +1886,10 @@
                                         <img src="./img/E4-CS06-019.png"
                                             alt="Capturas 6 del laboratorio extra - Vista 3" class="rounded shadow">
                                     </div>
+                                </div>
+                                <!-- Nombre de la vista actual -->
+                                <div class="carousel-view-name text-center mb-3">
+                                    <span class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">Vista 1 </span>
                                 </div>
                                 <!-- Controles del carrusel -->
                                 <button class="carousel-controls carousel-prev"
@@ -2366,259 +1930,7 @@
     </footer>
 
     <!-- Scripts de Interacción -->
-    <script>
-        // 1. Script para navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Cerrar menú móvil al hacer click en un enlace
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-
-        // 2. Script para menú móvil
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // 3. Script para navegación activa basada en scroll
-        function updateActiveNavigation() {
-            //const sections = ['s1', 's2', 's3', 's4'];
-            const sections = ['seccion-1', 'seccion-2', 'seccion-3', 'seccion-4'];
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            let currentSection = '';
-            let closestSection = '';
-            let closestDistance = Infinity;
-
-            for (const sectionId of sections) {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    const distance = Math.abs(rect.top - 120); // 120px offset para el header
-
-                    // Si la sección está visible en el viewport
-                    if (rect.top <= 120 && rect.bottom >= 120) {
-                        currentSection = sectionId;
-                        break;
-                    }
-
-                    // Encontrar la sección más cercana al top
-                    if (distance < closestDistance && rect.top <= 120) {
-                        closestDistance = distance;
-                        closestSection = sectionId;
-                    }
-                }
-            }
-
-            // Usar la sección actual o la más cercana
-            const activeSection = currentSection || closestSection;
-
-            // Remover clase active de todos los enlaces
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Añadir clase active al enlace correspondiente
-            if (activeSection) {
-                const activeLinks = document.querySelectorAll(`a[href="#${activeSection}"]`);
-                activeLinks.forEach(link => {
-                    if (link.classList.contains('nav-link')) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        }
-
-        // Ejecutar al cargar y al hacer scroll (con throttling)
-        let scrollTimeout;
-        function handleScroll() {
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-            }
-            scrollTimeout = setTimeout(updateActiveNavigation, 10);
-        }
-
-        window.addEventListener('load', updateActiveNavigation);
-        window.addEventListener('scroll', handleScroll);
-
-        // 4. Script para Dark/Light Mode
-        const themeToggle = document.getElementById('themeToggle');
-        const themeToggleMobile = document.getElementById('themeToggleMobile');
-        const html = document.documentElement;
-        const moonIcon = document.getElementById('moonIcon');
-        const sunIcon = document.getElementById('sunIcon');
-        const moonIconMobile = document.getElementById('moonIconMobile');
-        const sunIconMobile = document.getElementById('sunIconMobile');
-
-        // Función para aplicar el tema
-        function applyTheme(isDark) {
-            if (isDark) {
-                html.classList.add('dark');
-                html.classList.remove('light');
-                moonIcon.classList.remove('hidden');
-                sunIcon.classList.add('hidden');
-                moonIconMobile.classList.remove('hidden');
-                sunIconMobile.classList.add('hidden');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                html.classList.add('light');
-                html.classList.remove('dark');
-                moonIcon.classList.add('hidden');
-                sunIcon.classList.remove('hidden');
-                moonIconMobile.classList.add('hidden');
-                sunIconMobile.classList.remove('hidden');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Leer preferencia del sistema o localStorage al cargar
-        const storedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (storedTheme) {
-            applyTheme(storedTheme === 'dark');
-        } else if (prefersDark) {
-            applyTheme(true); // Usar la preferencia del sistema como default
-        } else {
-            applyTheme(false); // Default a light
-        }
-
-        // Toggle del tema al hacer click (escritorio y móvil)
-        themeToggle.addEventListener('click', () => {
-            const isDark = html.classList.contains('dark');
-            applyTheme(!isDark);
-        });
-
-        themeToggleMobile.addEventListener('click', () => {
-            const isDark = html.classList.contains('dark');
-            applyTheme(!isDark);
-        });
-
-        // 5. Script para carruseles de imágenes
-        const carousels = {};
-
-        function initCarousel(carouselId) {
-            carousels[carouselId] = {
-                currentSlide: 0,
-                totalSlides: document.querySelectorAll(`#${carouselId} .carousel-slide`).length
-            };
-        }
-
-        function moveSlide(carouselId, direction) {
-            if (!carousels[carouselId]) initCarousel(carouselId);
-
-            const carousel = carousels[carouselId];
-            carousel.currentSlide += direction;
-
-            if (carousel.currentSlide >= carousel.totalSlides) {
-                carousel.currentSlide = 0;
-            } else if (carousel.currentSlide < 0) {
-                carousel.currentSlide = carousel.totalSlides - 1;
-            }
-
-            updateCarouselView(carouselId);
-        }
-
-        function goToSlide(carouselId, slideIndex) {
-            if (!carousels[carouselId]) initCarousel(carouselId);
-
-            carousels[carouselId].currentSlide = slideIndex;
-            updateCarouselView(carouselId);
-        }
-
-        function updateCarouselView(carouselId) {
-            const container = document.querySelector(`#${carouselId} .carousel-container`);
-            const dots = document.querySelectorAll(`#${carouselId} .carousel-dot`);
-            const currentSlide = carousels[carouselId].currentSlide;
-
-            // Mover el contenedor
-            container.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-            // Actualizar indicadores
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        // Reemplazar enlaces de Notion con los correctos
-        function cambiarHrefNotion(elementId) {
-            const notionPrefix = 'https://www.notion.so';
-            const notionPage = '/GRUPO_12-Reto-BigData-2877ced341bb81db901ed4ea50dc9fd2';
-            let element = document.getElementById(elementId);
-            element.setAttribute('href', notionPrefix + notionPage);
-        }
-
-        // Inicializar carruseles al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            cambiarHrefNotion('notionLink');
-            cambiarHrefNotion('notionLinkMobile');
-            initCarousel('carousel-e2-cs01');
-            initCarousel('carousel-e2-cs02');
-            initCarousel('carousel-e2-cs03');
-            initCarousel('carousel-e2-cs04');
-            initCarousel('carousel-e2-cs05');
-            initCarousel('carousel-e3-cs01');
-            initCarousel('carousel-e3-cs03');
-            initCarousel('carousel-e3-cs04');
-            initCarousel('carousel-e3-cs05');
-            initCarousel('carousel-e4-cs01');
-            initCarousel('carousel-e4-cs02');
-            initCarousel('carousel-e4-cs03');
-            initCarousel('carousel-e4-cs04');
-        });
-
-        // 6. Script para desplegables independientes
-        function toggleAccordion(sectionId) {
-            const section = document.getElementById(sectionId);
-            const content = section.querySelector('.accordion-content');
-            const chevron = section.querySelector('.accordion-chevron');
-
-            // Toggle expanded state
-            const isExpanded = section.getAttribute('aria-expanded') === 'true';
-            section.setAttribute('aria-expanded', !isExpanded);
-
-            if (isExpanded) {
-                // Collapse
-                content.style.maxHeight = '0';
-                content.style.opacity = '0';
-                chevron.style.transform = 'rotate(0deg)';
-            } else {
-                // Expand
-                content.style.maxHeight = content.scrollHeight + 'px';
-                content.style.opacity = '1';
-                chevron.style.transform = 'rotate(180deg)';
-            }
-        }
-
-        // Inicializar todos los acordeones como colapsados al cargar la página
-        document.addEventListener('DOMContentLoaded', function () {
-            const sections = ['seccion-1', 'seccion-2', 'seccion-3', 'seccion-4'];
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-
-        // Evitar propagación de clics en enlaces de Notion
-        document.getElementById('notionLink').addEventListener('click', (event) => {
-            event.stopPropagation();
-        });
-        document.getElementById('notionLinkMobile').addEventListener('click', (event) => {
-            event.stopPropagation();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
